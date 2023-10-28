@@ -5,10 +5,13 @@ from dotenv import load_dotenv
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings, HuggingFaceInstructEmbeddings
 from ddg_search import search_results
+from ddg_search import link
 from langchain.vectorstores import FAISS
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 import os
+#import streamlit as st
+from PIL import Image
 from langchain.chat_models import ChatOpenAI
 from langchain.schema import (
     SystemMessage,
@@ -63,13 +66,26 @@ def init():
         page_title="Customer Support ChatBot",
         page_icon="🤖"
     )
-    
+   
 def main():
     init()
+    st.write('''<style>
+"<style>.st-emotion-cache-1v0mbdj.e115fcil1 {
+    max-width: 200px;
+    display: flex;
+} </style>''', unsafe_allow_html=True)
+    image = Image.open('logo.jpeg')
+    new_image = image.resize((600, 400))
+    st.image(image, caption='')
+    xyz = st.text_input("Please enter Website url in e.g ihubiitmandi.in")
     main_contener = st.container()
-    link = st.chat_input("Type Your website link here and Press Enter button: ", key="user_input")
-    #main_contener.header("Customer Support ChatBot 🤖")
-    main_contener.title('Customer Support :blue[ChatBot] 🤖')
+    # link = st.chat_input("Type Your website link here and Press Enter button: ", key="user_input2")
+    
+
+    #main_contener.header("Customer Support ChatBot")
+    main_contener.title('Customer Support :blue[ChatBot] ')
+   
+    link(xyz)
     main_contener.style.width = "100px"  # Set the width
     main_contener.style.height = "200px"  # Set the height
     main_contener.style.overflow = "auto"  # Add both vertical and horizontal scrollbars
@@ -78,7 +94,7 @@ def main():
 
         message('Hi !, I am AI Assistant, you can ask your query about ibub.')
         user_input = st.chat_input("Type Your query here and Press Enter button: ", key="user_input")
-        
+        # link = st.chat_input("Type Your website link here and Press Enter button: ", key="user_input2")
         #user_input = st.text_input("Type Your query here and Press Enter button: ", key="user_input")
         if user_input:
             #st.write(f"User has sent the following prompt: {user_input}")
@@ -89,7 +105,7 @@ def main():
                 ]
             st.session_state.messages.append(HumanMessage(content=user_input))
             with st.spinner("Thinking..."):
-                raw_text = search_results(user_input,link)
+                raw_text = search_results(user_input)
                 text_chunks = get_text_chunks(raw_text)
                 vectorstore = get_vectorstore(text_chunks)
                 # create conversation chain

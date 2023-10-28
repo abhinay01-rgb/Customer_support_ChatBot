@@ -63,10 +63,11 @@ def init():
         page_title="Customer Support ChatBot",
         page_icon="🤖"
     )
-
+    
 def main():
     init()
     main_contener = st.container()
+    link = st.chat_input("Type Your website link here and Press Enter button: ", key="user_input")
     #main_contener.header("Customer Support ChatBot 🤖")
     main_contener.title('Customer Support :blue[ChatBot] 🤖')
     main_contener.style.width = "100px"  # Set the width
@@ -88,7 +89,7 @@ def main():
                 ]
             st.session_state.messages.append(HumanMessage(content=user_input))
             with st.spinner("Thinking..."):
-                raw_text = search_results(user_input)
+                raw_text = search_results(user_input,link)
                 text_chunks = get_text_chunks(raw_text)
                 vectorstore = get_vectorstore(text_chunks)
                 # create conversation chain

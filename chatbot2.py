@@ -87,7 +87,7 @@ def main():
     # st.header('This is a header with a divider', divider='rainbow')
     #st.subheader('This is a subheader with a divider', divider='rainbow')
     st.subheader('Enter Website Url to  :blue[Explore]')
-    xyz = st.text_input("Please input the website URL here, excluding 'www.', for example, ihubiitmandi.in.")
+    xyz = st.text_input("Please input the website URL here, for example, ihubiitmandi.in.")
     #st.header('', divider='rainbow')
     main_contener = st.container()
     # link = st.chat_input("Type Your website link here and Press Enter button: ", key="user_input2")

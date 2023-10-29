@@ -75,7 +75,7 @@ def main():
     display: flex;
 } </style>''', unsafe_allow_html=True)
     image = Image.open('logo.jpeg')
-    new_image = image.resize((600, 400))
+    new_image = image.resize((400, 200))
     st.image(image, caption='')
     xyz = st.text_input("Please enter Website url in e.g ihubiitmandi.in")
     main_contener = st.container()

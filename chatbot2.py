@@ -19,6 +19,10 @@ from langchain.schema import (
     AIMessage
 )
 
+
+
+
+
 def get_text_chunks(text):
     text_splitter = CharacterTextSplitter(
         separator="\n",
@@ -62,13 +66,15 @@ def init():
         print("OPENAI_API_KEY is set")
 
     # # setup streamlit page
-    st.set_page_config(
-        page_title="Customer Support ChatBot",
-        page_icon="🤖"
-    )
+    # st.set_page_config(
+    #     page_title="Customer Support ChatBot",
+    #     page_icon="🤖"
+    # )
    
 def main():
     init()
+    st.title('WebWisdom :blue[Bot] ')
+    st.header('Powered :blue[By]',)
     st.write('''<style>
 "<style>.st-emotion-cache-1v0mbdj.e115fcil1 {
     max-width: 100px;
@@ -77,17 +83,22 @@ def main():
     image = Image.open('logo.jpeg')
     new_image = image.resize((400, 200))
     st.image(image, caption='')
+    st.header('', divider='rainbow')
+    # st.header('This is a header with a divider', divider='rainbow')
+    #st.subheader('This is a subheader with a divider', divider='rainbow')
+    st.subheader('Enter Website Url to  :blue[Explore]')
     xyz = st.text_input("Please enter Website url in e.g ihubiitmandi.in")
+    #st.header('', divider='rainbow')
     main_contener = st.container()
     # link = st.chat_input("Type Your website link here and Press Enter button: ", key="user_input2")
     
 
     #main_contener.header("Customer Support ChatBot")
-    main_contener.title('Customer Support :blue[ChatBot] ')
+    # main_contener.title('Customer Support :blue[ChatBot] ')
    
     link(xyz)
     main_contener.style.width = "100px"  # Set the width
-    main_contener.style.height = "200px"  # Set the height
+    main_contener.style.height = "300px"  # Set the height
     main_contener.style.overflow = "auto"  # Add both vertical and horizontal scrollbars
     #main_contener.title('_Streamlit_ is :blue[cool] :sunglasses:')
     with main_contener:

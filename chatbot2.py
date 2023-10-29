@@ -71,7 +71,7 @@ def main():
     init()
     st.write('''<style>
 "<style>.st-emotion-cache-1v0mbdj.e115fcil1 {
-    max-width: 200px;
+    max-width: 100px;
     display: flex;
 } </style>''', unsafe_allow_html=True)
     image = Image.open('logo.jpeg')

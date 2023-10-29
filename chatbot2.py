@@ -73,7 +73,7 @@ def init():
    
 def main():
     init()
-    st.title('WebWisdom :blue[Bot] ')
+    st.title('Web-ChatBot Wisdom')
     st.header('Powered :blue[By]',)
     st.write('''<style>
 "<style>.st-emotion-cache-1v0mbdj.e115fcil1 {

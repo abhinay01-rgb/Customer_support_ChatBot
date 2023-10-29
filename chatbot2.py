@@ -103,7 +103,7 @@ def main():
     #main_contener.title('_Streamlit_ is :blue[cool] :sunglasses:')
     with main_contener:
 
-        message('Hello! I'm an AI Assistant ready to help with your website queries.')
+        message("Hello! I'm an AI Assistant ready to help with your website queries.")
         user_input = st.chat_input("Type Your query here and Press Enter button: ", key="user_input")
         # link = st.chat_input("Type Your website link here and Press Enter button: ", key="user_input2")
         #user_input = st.text_input("Type Your query here and Press Enter button: ", key="user_input")

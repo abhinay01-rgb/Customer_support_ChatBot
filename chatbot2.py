@@ -43,7 +43,7 @@ def get_vectorstore(text_chunks):
     return vectorstore
 
 def get_conversation_chain(vectorstore):
-    llm = ChatOpenAI(temperature=0,model_name='gpt-4-32k')
+    llm = ChatOpenAI()
     temperature=0
     #temperature=0,
     #model_name='gpt-3.5-turbo'

@@ -4,7 +4,7 @@ from streamlit_chat import message
 from dotenv import load_dotenv
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings, HuggingFaceInstructEmbeddings
-from ddg_search import search_results
+from ddg_search import get_search_results
 from ddg_search import link
 from langchain.vectorstores import FAISS
 from langchain.memory import ConversationBufferMemory

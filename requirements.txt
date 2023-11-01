@@ -6,6 +6,7 @@ streamlit_chat
 openai
 faiss-cpu
 altair
+bs4
 tiktoken
 pyngrok
 InstructorEmbedding

@@ -1,4 +1,8 @@
+
+import requests
+import re
 import json
+from bs4 import BeautifulSoup
 from duckduckgo_search import ddg
 
 x = None  # Initialize x as a global variable
@@ -8,20 +12,35 @@ def link(link):
     x = link
     print(x)
 
-def search_results(query):
+
+def get_search_result(query):
     global x  # Declare x as a global variable
     print(f"x is {x}")
-    # Search DuckDuckGo and scrape the results
+    headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
+    }
+  
     results = ddg(f"site:{x} {query}")
-    print(results)
-    s1 = json.dumps(results)
-    data = json.loads(s1)  # Return a list of dictionaries
+    s1=json.dumps(results)
+    data = json.loads(s1)
 
-    text = []
+    url = []
+    count = 0
+    text =""
+    
     for item in data:
-        text.append(item.get('title', 'No title found'))
-        text.append(item.get('body', 'No body found'))
+        href = item.get('href', 'No href found')
+        url.append(href)
+        count += 1
+        if count == 2:
+            break
 
-    # print("Title:", text)
-    result = ", ".join(text)
-    return result
+    for u in url:
+        res=requests.get(u,headers=headers)
+        soup = BeautifulSoup(res.text, 'html.parser')
+
+        text += re.sub(r'\s+', ' ', soup.get_text().strip())
+        print(text)
+    return text
+
+

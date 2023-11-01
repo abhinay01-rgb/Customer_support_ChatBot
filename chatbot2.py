@@ -118,7 +118,7 @@ def main():
                 ]
             st.session_state.messages.append(HumanMessage(content=user_input))
             with st.spinner("Thinking..."):
-                raw_text = search_results(user_input)
+                raw_text = get_search_results(user_input)
                 text_chunks = get_text_chunks(raw_text)
                 vectorstore = get_vectorstore(text_chunks)
                 # create conversation chain

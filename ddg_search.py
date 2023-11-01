@@ -13,7 +13,7 @@ def link(link):
     print(x)
 
 
-def get_search_result(query):
+def get_search_results(query):
     global x  # Declare x as a global variable
     print(f"x is {x}")
     headers = {

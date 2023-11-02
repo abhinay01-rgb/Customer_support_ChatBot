@@ -90,6 +90,8 @@ def main():
     #st.subheader('This is a subheader with a divider', divider='rainbow')
     st.subheader('Enter Website Url to  :blue[Explore]')
     xyz = st.text_input("Please input the website URL here, for example, ihubiitmandi.in.")
+    my_bar = st.progress(0)
+    status_text = st.empty()
     #st.header('', divider='rainbow')
     main_contener = st.container()
     # link = st.chat_input("Type Your website link here and Press Enter button: ", key="user_input2")
@@ -118,20 +120,37 @@ def main():
                 ]
             st.session_state.messages.append(HumanMessage(content=user_input))
             with st.spinner("Thinking..."):
+                
                 raw_text = get_search_results(user_input)
+                my_bar.progress(20)
+                status_text.text(f'Operation in progress. Please wait..: {20}%')
+            
                 text_chunks = get_text_chunks(raw_text)
+                my_bar.progress(30)
+                status_text.text(f'Operation in progress. Please wait..: {30}%')
                 vectorstore = get_vectorstore(text_chunks)
+                my_bar.progress(40)
+                status_text.text(f'Operation in progress. Please wait..: {40}%')
                 # create conversation chain
                 st.session_state.conversation = get_conversation_chain(vectorstore)
+                my_bar.progress(50)
+                status_text.text(f'Operation in progress. Please wait..: {50}%')
                 #response = chat(st.session_state.messages)
                 response = st.session_state.conversation({'question': user_input})
+                my_bar.progress(60)
+                status_text.text(f'Operation in progress. Please wait..: {60}%')
                 #st.write(response)
                 st.session_state.chat_history = response['chat_history']
+                my_bar.progress(70)
+                status_text.text(f'Operation in progress. Please wait..: {70}%')
                 st.session_state.messages.append(
                 AIMessage(content=response['answer']))
-
+                my_bar.progress(80)
+                status_text.text(f'Operation in progress. Please wait..: {80}%')
                 # display message history
                 messages = st.session_state.get('messages', [])
+                my_bar.progress(100)
+                status_text.text(f'Operation in progress. Please wait..: {100}%')
                 #for i, message in enumerate(st.session_state.chat_history):
                 for i, msg in enumerate(messages[1:]):
                     if i % 2 == 0:

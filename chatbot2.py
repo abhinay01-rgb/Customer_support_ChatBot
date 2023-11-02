@@ -86,6 +86,8 @@ def main():
     new_image = image.resize((400, 200))
     st.image(image, caption='')
     st.header('', divider='rainbow')
+    my_bar = st.progress(0)
+    status_text = st.empty()
     # st.header('This is a header with a divider', divider='rainbow')
     #st.subheader('This is a subheader with a divider', divider='rainbow')
     st.subheader('Enter Website Url to  :blue[Explore]')

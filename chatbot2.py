@@ -121,7 +121,7 @@ def main():
                 ]
             st.session_state.messages.append(HumanMessage(content=user_input))
             with st.spinner("Thinking..."):
-                
+                my_bar.progress(10)
                 raw_text = get_search_results(user_input)
                 my_bar.progress(20)
                 status_text.text(f'Operation in progress. Please wait..: {20}%')

@@ -122,36 +122,37 @@ def main():
             st.session_state.messages.append(HumanMessage(content=user_input))
             with st.spinner("Thinking..."):
                 my_bar.progress(10)
+                status_text.text(f'Operation in progress. Please wait: {10}%')
                 raw_text = get_search_results(user_input)
                 my_bar.progress(20)
-                status_text.text(f'Operation in progress. Please wait..: {20}%')
+                status_text.text(f'Operation in progress. Please wait: {20}%')
             
                 text_chunks = get_text_chunks(raw_text)
                 my_bar.progress(30)
-                status_text.text(f'Operation in progress. Please wait..: {30}%')
+                status_text.text(f'Operation in progress. Please wait: {30}%')
                 vectorstore = get_vectorstore(text_chunks)
                 my_bar.progress(40)
-                status_text.text(f'Operation in progress. Please wait..: {40}%')
+                status_text.text(f'Operation in progress. Please wait: {40}%')
                 # create conversation chain
                 st.session_state.conversation = get_conversation_chain(vectorstore)
                 my_bar.progress(50)
-                status_text.text(f'Operation in progress. Please wait..: {50}%')
+                status_text.text(f'Operation in progress. Please wait: {50}%')
                 #response = chat(st.session_state.messages)
                 response = st.session_state.conversation({'question': user_input})
                 my_bar.progress(60)
-                status_text.text(f'Operation in progress. Please wait..: {60}%')
+                status_text.text(f'Operation in progress. Please wait: {60}%')
                 #st.write(response)
                 st.session_state.chat_history = response['chat_history']
                 my_bar.progress(70)
-                status_text.text(f'Operation in progress. Please wait..: {70}%')
+                status_text.text(f'Operation in progress. Please wait: {70}%')
                 st.session_state.messages.append(
                 AIMessage(content=response['answer']))
                 my_bar.progress(80)
-                status_text.text(f'Operation in progress. Please wait..: {80}%')
+                status_text.text(f'Operation in progress. Please wait: {80}%')
                 # display message history
                 messages = st.session_state.get('messages', [])
                 my_bar.progress(100)
-                status_text.text(f'Operation in progress. Please wait..: {100}%')
+                status_text.text(f'Operation in progress. Please wait: {100}%')
                 #for i, message in enumerate(st.session_state.chat_history):
                 for i, msg in enumerate(messages[1:]):
                     if i % 2 == 0:
